@@ -9,7 +9,11 @@ namespace BinaryTree_Tests
         {
             var tree = new BinaryTree();
 
-            Assert.Equal(0, tree.Count);
+            //Standard Assertion
+            //Assert.Equal(0, tree.Count);
+
+            //Fluent Assertion
+            tree.Count.Should().Be(0);
         }
     }
 }
