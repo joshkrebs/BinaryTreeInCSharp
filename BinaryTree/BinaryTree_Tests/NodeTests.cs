@@ -27,5 +27,28 @@ namespace BinaryTree_Tests
 
             node.Value.Should().Be(testValue);
         }
+
+        [Fact]
+        public void Node_StartsWithNullChildren()
+        {
+            Node<int> node = new Node<int>(1);
+
+            node.Left.Should().BeNull();
+            node.Right.Should().BeNull();
+        }
+
+        [Fact]
+        public void Node_AddsLeftchild()
+        {
+            int parentValue = 1;
+            int childValue = 0;
+            Node<int> parent = new Node<int>(parentValue);
+            Node<int> child = new Node<int>(childValue);
+
+            parent.AddChild(child);
+
+            parent.Left.Should().NotBeNull();
+            parent.Left?.Value.Should().Be(0);
+        }
     }
 }
