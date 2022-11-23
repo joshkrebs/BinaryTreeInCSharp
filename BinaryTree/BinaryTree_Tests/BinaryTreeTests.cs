@@ -7,12 +7,6 @@ namespace BinaryTree_Tests
         [Fact(DisplayName = "Recursively adds to the left child's left")]
         public void Tree_AddsChild_Left_Left()
         {
-            /* GIVEN the tree has a root with two children
-             * AND a new value is added 
-             * AND the new value is less than the root's left child
-             * THEN the new value is added as the left child of the root's left child
-             */
-
             var tree = new BinaryTree<int>();
             tree.Add(10);
             tree.Add(7);
