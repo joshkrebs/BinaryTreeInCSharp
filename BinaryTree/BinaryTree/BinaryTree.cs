@@ -8,7 +8,6 @@
 
         public void Add(T value)
         {
-            // TODO: Add Node Logic
             Node<T> newNode = new Node<T>(value);
             
             if(Root == null)

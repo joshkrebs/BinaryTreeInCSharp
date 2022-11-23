@@ -8,7 +8,7 @@ namespace BinaryTree
 {
     public class Node<T> where T : IComparable<T>
     {
-        public T Value { get; private set; }
+        public readonly T Value;
         public Node<T>? Left { get; private set; }
         public Node<T>? Right { get; private set; }
         

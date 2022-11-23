@@ -1,8 +1,72 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace BinaryTree_Tests
 {
-    using BinaryTree;
+    public class ComplexTree
+    {
+        [Fact(DisplayName = "Recursively adds to the left child's left")]
+        public void Tree_AddsChild_Left_Left()
+        {
+            /* GIVEN the tree has a root with two children
+             * AND a new value is added 
+             * AND the new value is less than the root's left child
+             * THEN the new value is added as the left child of the root's left child
+             */
 
-    public class BinaryTreeTests
+            var tree = new BinaryTree<int>();
+            tree.Add(10);
+            tree.Add(7);
+            tree.Add(5);
+
+            tree.Root!.Value.Should().Be(10);
+            tree.Root!.Left!.Value.Should().Be(7);
+            tree.Root!.Left!.Left!.Value.Should().Be(5);
+        }
+
+        [Fact(DisplayName = "Recursively adds to the left child's right")]
+        public void Tree_AddsChild_Left_Right()
+        {
+            var tree = new BinaryTree<int>();
+            int first = 10;
+            int second = 7;
+            int third = 8;
+            tree.Add(first);
+            tree.Add(second);
+            tree.Add(third);
+
+            tree.Root!.Value.Should().Be(first);
+            tree.Root!.Left!.Value.Should().Be(second);
+            tree.Root!.Left!.Right!.Value.Should().Be(third);
+        }
+
+        [Fact(DisplayName = "Recursively adds to the right child's left")]
+        public void Tree_AddsChild_Right_Left()
+        {
+            var tree = new BinaryTree<int>();
+            tree.Add(10);
+            tree.Add(17);
+            tree.Add(15);
+
+            tree.Root!.Value.Should().Be(10);
+            tree.Root!.Right!.Value.Should().Be(17);
+            tree.Root!.Right!.Left!.Value.Should().Be(15);
+        }
+
+        [Fact(DisplayName = "Recursively adds to the right child's right")]
+        public void Tree_AddsChild_Right_Right()
+        {
+            var tree = new BinaryTree<int>();
+            tree.Add(10);
+            tree.Add(17);
+            tree.Add(18);
+
+            tree.Root!.Value.Should().Be(10);
+            tree.Root!.Right!.Value.Should().Be(17);
+            tree.Root!.Right!.Right!.Value.Should().Be(18);
+        }
+    }
+
+    public class EmptyTree
     {
         [Fact]
         public void EmptyTree_HasNodeCount_0()
@@ -23,7 +87,37 @@ namespace BinaryTree_Tests
 
             tree.Root.Should().BeNull();
         }
+    }
 
+    public class FullTree
+    {
+        [Fact]
+        public void FullTree_RootWithTwoChildren()
+        {
+            var tree = new BinaryTree<int>();
+            tree.Add(10);
+            tree.Add(7);
+            tree.Add(12);
+
+            tree.Root!.Value.Should().Be(10);
+            tree.Root!.Left!.Value.Should().Be(7);
+            tree.Root!.Right!.Value.Should().Be(12);
+        }
+
+        [Fact]
+        public void FullTree_HasNodeCount3()
+        {
+            var tree = new BinaryTree<int>();
+            tree.Add(10);
+            tree.Add(7);
+            tree.Add(12);
+
+            tree.Count.Should().Be(3);
+        }
+    }
+
+    public class SimpleTree
+    {
         [Fact]
         public void SimpleTree_HasNodeCount_1()
         {
@@ -53,7 +147,7 @@ namespace BinaryTree_Tests
             tree.Root!.Value.Should().Be(10);
             tree.Root!.Right.Should().BeNull();
             tree.Root!.Left.Should().NotBeNull();
-            tree.Root!.Left!.Value.Should().Be(7); 
+            tree.Root!.Left!.Value.Should().Be(7);
         }
 
         [Fact]
@@ -80,87 +174,6 @@ namespace BinaryTree_Tests
             tree.Root!.Left.Should().BeNull();
             tree.Root!.Right.Should().NotBeNull();
             tree.Root!.Right!.Value.Should().Be(10);
-        }
-
-        [Fact]
-        public void Tree_AddsChild_Left_Left()
-        {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(7);
-            tree.Add(5);
-
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Left!.Value.Should().Be(7);
-            tree.Root!.Left!.Left.Should().NotBeNull();
-            tree.Root!.Left!.Left!.Value.Should().Be(5);
-        }
-
-        [Fact]
-        public void Tree_AddsChild_Left_Right()
-        {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(7);
-            tree.Add(8);
-
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Left!.Value.Should().Be(7);
-            tree.Root!.Left!.Right.Should().NotBeNull();
-            tree.Root!.Left!.Right!.Value.Should().Be(8);
-        }
-
-        [Fact]
-        public void Tree_AddsChild_Right_Left()
-        {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(17);
-            tree.Add(15);
-
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Right!.Value.Should().Be(17);
-            tree.Root!.Right!.Left.Should().NotBeNull();
-            tree.Root!.Right!.Left!.Value.Should().Be(15);
-        }
-
-        [Fact]
-        public void Tree_AddsChild_Right_Right()
-        {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(17);
-            tree.Add(18);
-
-
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Right!.Value.Should().Be(17);
-            tree.Root!.Right!.Right.Should().NotBeNull();
-            tree.Root!.Right!.Right!.Value.Should().Be(18);
-        }
-
-        [Fact]
-        public void FullTree_RootWithTwoChildren()
-        {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(7);
-            tree.Add(12);
-
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Left!.Value.Should().Be(7);
-            tree.Root!.Right!.Value.Should().Be(12);
-        }
-
-        [Fact]
-        public void FullTree_HasNodeCount3()
-        {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(7);
-            tree.Add(12);
-
-            tree.Count.Should().Be(3);
         }
     }
 }
