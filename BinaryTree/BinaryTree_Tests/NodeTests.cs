@@ -61,5 +61,39 @@ namespace Node_Tests
 
             parent.Right!.Value.Should().Be(childValue);
         }
+
+        [Fact]
+        public void Node_RecursivelyAddsToLeftChild()
+        {
+            int parentValue = 2;
+            int childValue = 1;
+            int grandchildValue = 0;
+
+            Node<int> parent = new Node<int>(parentValue);
+            Node<int> child = new Node<int>(childValue);
+            Node<int> grandchild = new Node<int>(grandchildValue);
+
+            parent.AddChild(child);
+            parent.AddChild(grandchild);
+
+            parent.Left!.Left!.Value.Should().Be(grandchildValue);
+        }
+
+        [Fact]
+        public void Node_RecursivelyAddsToRightChild()
+        {
+            int parentValue = 2;
+            int childValue = 3;
+            int grandchildValue = 4;
+
+            Node<int> parent = new Node<int>(parentValue);
+            Node<int> child = new Node<int>(childValue);
+            Node<int> grandchild = new Node<int>(grandchildValue);
+
+            parent.AddChild(child);
+            parent.AddChild(grandchild);
+
+            parent.Right!.Right!.Value.Should().Be(grandchildValue);
+        }
     }
 }

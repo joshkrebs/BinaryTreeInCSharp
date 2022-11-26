@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+
+[assembly: InternalsVisibleToAttribute("BinaryTree_Tests")]
 
 namespace BinaryTree
 {
@@ -17,7 +20,7 @@ namespace BinaryTree
             Value = value;
         }
 
-        public void AddChild(Node<T> child)
+        internal void AddChild(Node<T> child)
         {
             if (child.Value.CompareTo(Value) < 0)
             {
