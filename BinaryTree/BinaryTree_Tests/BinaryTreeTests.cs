@@ -4,59 +4,61 @@ namespace BinaryTree_Tests
 {
     public class ComplexTree
     {
+        int parent = 10;
+        int leftChild = 7;
+        int rightChild = 17;
+        BinaryTree<int> tree;
+
+        public ComplexTree()
+        {
+            tree = new BinaryTree<int>();
+            tree.Add(parent);
+            tree.Add(leftChild);
+            tree.Add(rightChild);
+        }
+
         [Fact(DisplayName = "Recursively adds to the left child's left")]
         public void Tree_AddsChild_Left_Left()
         {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(7);
-            tree.Add(5);
+            int grandchild = 5;
+            tree.Add(grandchild);
 
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Left!.Value.Should().Be(7);
-            tree.Root!.Left!.Left!.Value.Should().Be(5);
+            tree.Root!.Value.Should().Be(parent);
+            tree.Root!.Left!.Value.Should().Be(leftChild);
+            tree.Root!.Left!.Left!.Value.Should().Be(grandchild);
         }
 
         [Fact(DisplayName = "Recursively adds to the left child's right")]
         public void Tree_AddsChild_Left_Right()
         {
-            var tree = new BinaryTree<int>();
-            int first = 10;
-            int second = 7;
-            int third = 8;
-            tree.Add(first);
-            tree.Add(second);
-            tree.Add(third);
+            int grandchild = 8;
+            tree.Add(grandchild);
 
-            tree.Root!.Value.Should().Be(first);
-            tree.Root!.Left!.Value.Should().Be(second);
-            tree.Root!.Left!.Right!.Value.Should().Be(third);
+            tree.Root!.Value.Should().Be(parent);
+            tree.Root!.Left!.Value.Should().Be(leftChild);
+            tree.Root!.Left!.Right!.Value.Should().Be(grandchild);
         }
 
         [Fact(DisplayName = "Recursively adds to the right child's left")]
         public void Tree_AddsChild_Right_Left()
         {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(17);
-            tree.Add(15);
+            int grandchild = 15;
+            tree.Add(grandchild);
 
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Right!.Value.Should().Be(17);
-            tree.Root!.Right!.Left!.Value.Should().Be(15);
+            tree.Root!.Value.Should().Be(parent);
+            tree.Root!.Right!.Value.Should().Be(rightChild);
+            tree.Root!.Right!.Left!.Value.Should().Be(grandchild);
         }
 
         [Fact(DisplayName = "Recursively adds to the right child's right")]
         public void Tree_AddsChild_Right_Right()
         {
-            var tree = new BinaryTree<int>();
-            tree.Add(10);
-            tree.Add(17);
-            tree.Add(18);
+            int grandchild = 18;
+            tree.Add(grandchild);
 
-            tree.Root!.Value.Should().Be(10);
-            tree.Root!.Right!.Value.Should().Be(17);
-            tree.Root!.Right!.Right!.Value.Should().Be(18);
+            tree.Root!.Value.Should().Be(parent);
+            tree.Root!.Right!.Value.Should().Be(rightChild);
+            tree.Root!.Right!.Right!.Value.Should().Be(grandchild);
         }
     }
 
